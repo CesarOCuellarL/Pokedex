@@ -1,22 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
+import Popup from "./componentes/popup.js"
 
 function App() {
   const [pokemon, setPokemon] = useState({})
   const [count, setCount] = useState(0);
+  const [buttonPopup,setButtonPopup]= useState(false);
 
   const fetchPokemon = (id) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then((response) => response.json())
-      .then((data) => setPokemon(data));
+      .then((data) => setPokemon(data))
+      setCount(id)
+      ;
   };
 
-  const add = () => {
-    setCount((current) => current + 1);
+  const add=(min=1,max=600)=>{
+    var id;
+    if(pokemon.id >=max){
+      id = pokemon.id = min;
+    } else{
+      id = pokemon.id +1;
+    } 
+    return id;
   };
-  const decrease = () => {
-    setCount((current) => current - 1);
+  const decrease=(min=1, max=600)=>{
+    var id;
+    if(pokemon.id <= min){
+    id = pokemon.id=max;
+  }else {
+    id = pokemon.id - 1 ;
+  } 
+    return id;
   };
 
   const getRandomInt = (min = 1,max=600) => {
@@ -25,6 +41,7 @@ function App() {
 
   useEffect(()=>{
     console.log({pokemon})
+    console.log({count})
   },[pokemon]);
   return (
     <div className="App">

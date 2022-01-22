@@ -46,6 +46,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <a className="alignCentral" href='https://github.com/Ceslusbel/Pokedex.git'>GitHub</a>
         <div className='flex-container'>
           <img src={pokemon?.sprites?.back_default ?? logo} className='poke-image' alt='logo' />
           <img src={pokemon?.sprites?.front_default ?? logo} className='poke-image' alt='logo' />
@@ -55,8 +56,20 @@ function App() {
         <div className='flex-container'>
           <button className='button' onClick={() => fetchPokemon(decrease())}>Back</button>
           <button className='button' onClick={() => fetchPokemon(getRandomInt())}>Random</button>
-          <button className='button' onClick={() => fetchPokemon(add())}>Next</button>  
+          <button className='button' onClick={() => fetchPokemon(add())}>Next</button> 
+          <button className='button' onClick={()=>setButtonPopup(true)}>Abilities</button> 
         </div>
+        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+          <h3>abilities</h3>
+          <ul className='text'>
+             {pokemon?.abilities?.map((ability)=>(
+               <li key={ability.ability.id}>
+                 {ability.ability.name}
+               </li>
+             ))
+             }
+          </ul>
+        </Popup>
       </header>
     </div>
   );

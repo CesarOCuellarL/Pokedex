@@ -15,17 +15,5 @@
     padding: 32px;
     width: 100%;
     max-width: 640px;
-    background-color: #A41A27;
-}
-
-.popup-inner .close-btn {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background-color: #41729f;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+    background-color: #ad8489;
 }

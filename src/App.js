@@ -5,14 +5,12 @@ import Popup from "./componentes/popup.js"
 
 function App() {
   const [pokemon, setPokemon] = useState({})
-  const [count, setCount] = useState(0);
   const [buttonPopup,setButtonPopup]= useState(false);
 
   const fetchPokemon = (id) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then((response) => response.json())
       .then((data) => setPokemon(data))
-      setCount(id)
       ;
   };
 
@@ -41,7 +39,6 @@ function App() {
 
   useEffect(()=>{
     console.log({pokemon})
-    console.log({count})
   },[pokemon]);
   return (
     <div className="App">

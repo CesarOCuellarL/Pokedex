@@ -1,11 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import Popup from "./componentes/popup.js"
+import Popup from "./componentes/popup.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [pokemon, setPokemon] = useState({})
   const [buttonPopup,setButtonPopup]= useState(false);
+  const [busqueda, setBusqueda]= useState('');
 
   const fetchPokemon = (id) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -13,6 +17,11 @@ function App() {
       .then((data) => setPokemon(data))
       ;
   };
+
+  const onChange = async e=>{
+    e.persist();
+    setBusqueda(e.target.value);
+  }
 
   const add=(min=1,max=600)=>{
     var id;
@@ -42,6 +51,18 @@ function App() {
   },[pokemon]);
   return (
     <div className="App">
+      <div className="containerInput">
+        <input
+          className="form-control inputBuscar"
+          value={busqueda}
+          placeholder="Búsqueda por Nombre de Pokemon"
+          onChange={onChange}
+        />
+        <button className="btn btn-success">
+          <FontAwesomeIcon icon={faSearch}/>
+        </button>
+      </div>
+
       <header className="App-header">
       <a className="alignCentral" href='https://github.com/Ceslusbel/Pokedex.git'>GitHub</a>
         <div className='flex-container'>

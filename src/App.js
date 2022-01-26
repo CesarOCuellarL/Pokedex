@@ -9,7 +9,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 function App() {
   const [pokemon, setPokemon] = useState({})
   const [buttonPopup,setButtonPopup]= useState(false);
-  const [busqueda, setBusqueda]= useState('');
+  const [busqueda, setBusqueda]= useState("");
 
   const fetchPokemon = (id) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -22,6 +22,13 @@ function App() {
     e.persist();
     setBusqueda(e.target.value);
   }
+
+  const fetchPokemonbyname = () => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${busqueda}`)
+      .then((response) => response.json())
+      .then((data) => setPokemon(data))
+      ;
+  };
 
   const add=(min=1,max=600)=>{
     var id;
@@ -58,7 +65,7 @@ function App() {
           placeholder="Búsqueda por Nombre de Pokemon"
           onChange={onChange}
         />
-        <button className="btn btn-success">
+        <button className="btn btn-success"  onClick={() => fetchPokemonbyname()}>
           <FontAwesomeIcon icon={faSearch}/>
         </button>
       </div>
